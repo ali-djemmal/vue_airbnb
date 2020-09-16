@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="style.css" type="text/css" /> --}}
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
 <link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css">
-
-    {{-- <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css"> --}}
     <script type="text/javascript">
        window.vuebnb_listing_model = "{!! addslashes(json_encode($model)) !!}"
       </script>
@@ -28,16 +26,9 @@
       <img class="icon" src="{{ asset('images/logo.png') }}">
       <h1>vuebnb</h1>
       </div>
-      
+
     <div id="app">
-      <div class="header">
-        <div
-          class="header-img"
-          v-bind:style="headerImageStyle"
-          v-on:click="modalOpen = true"
-        ></div>
-        <button class="view-photos">View Photos</button>
-      </div>
+    <header-image :image-url="images[0]" @header-clicked="openModal"></header-image>
       <div class="container">
         <div class="heading">
           <h1>@{{ title }}</h1>
@@ -86,16 +77,10 @@
           </div>
         </div>
       </div>
-      <div id="modal" v-bind:class="{ show : modalOpen }">
-        <button v-on:click="modalOpen = false" class="modal-close">
-          &times;
-        </button>
-        <div class="modal-content">
-          {{-- <img v-bind:src="images[0]"/> --}}
-          {{-- <image-carousel></image-carousel> --}}
-          <image-carousel :images="images"></image-carousel>
-          </div>
-      </div>
+      <modal-window ref="imagemodal">
+<image-carousel :images="images"></image-carousel>
+</modal-window>
+
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>

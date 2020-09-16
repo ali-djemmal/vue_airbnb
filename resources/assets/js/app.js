@@ -1,51 +1,31 @@
-import Vue from 'vue';
+import Vue from "vue";
 import "core-js/es/object/assign";
-import { populateAmenitiesAndPrices } from './helpers';
-import ImageCarousel from '../components/ImageCarousel.vue';
+import { populateAmenitiesAndPrices } from "./helpers";
+import ModalWindow from "../components/ModalWindow.vue";
+import ImageCarousel from "../components/ImageCarousel.vue";
+import HeaderImage from "../components/HeaderImage.vue";
 
 let model = JSON.parse(window.vuebnb_listing_model);
 model = populateAmenitiesAndPrices(model);
 //-------------------------------------------------------------
 
-    //---------------------------------------------
+//---------------------------------------------
 var app = new Vue({
-    el: '#app',
+    el: "#app",
     data: Object.assign(model, {
         headerImageStyle: {
-        'background-image': `url(${model.images[0]})`
+            "background-image": `url(${model.images[0]})`,
         },
         contracted: true,
-        modalOpen: false
-        }),
-        methods: {
-            escapeKeyListener: function(evt) {
-            if (evt.keyCode === 27 && this.modalOpen) {
-            this.modalOpen = false;
-            }
-            }
-            },
-            components:{
-                ImageCarousel
-                }
-         ,                
-            
-    watch: {
-        modalOpen: function() {
-            var className = 'modal-open';
-            if (this.modalOpen) {
-                document.body.classList.add(className);
-            } else {
-                document.body.classList.remove(className);
-            }
-        }
+    }),
+    components: {
+        ImageCarousel,
+        ModalWindow,
+        HeaderImage,
     },
-    created:  function() {
-        document.addEventListener('keyup', this.escapeKeyListener);
-    }
-            
-        
-    });
-
- 
-
-        
+    methods: {
+        openModal() {
+            this.$refs.imagemodal.modalOpen = true;
+        },
+    },
+});
