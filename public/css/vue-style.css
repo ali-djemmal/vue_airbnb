@@ -144,6 +144,27 @@ bottom: 20px;
 left: 20px;
 }
 
+.listing-save {
+position: absolute;
+top: 20px;
+right: 20px;
+cursor: pointer;
+}
+.listing-save .fa-heart-o {
+color: #ffffff;
+}
+.listing-save .fa-heart {
+
+color: #ff5a5f;
+}
+.listing-save i {
+padding-right: 4px;
+}
+.listing-save button .fa-heart-o {
+color: #808080;
+}
+
+
 .about p {
     white-space: pre-wrap;
 }
@@ -219,6 +240,7 @@ left: 20px;
 
 .listing-summary {
 flex: 0 0 auto;
+position: relative;
 }
 .listing-summary a {
 text-decoration: none;
@@ -250,6 +272,26 @@ line-height: 24px;
 .listing-summary .info.address {
 font-size: 14px;
 line-height: 18px;
+}
+@media (max-width: 400px) {
+.listing-summary .listing-save {
+left: 15px;
+right: auto;
+}
+}
+
+
+#saved .listing-summaries {
+display: flex;
+flex-wrap: wrap;
+justify-content: left;
+overflow: hidden;
+}
+#saved .listing-summaries .listing-summary {
+padding-bottom: 30px;
+}
+.listing-summaries > .listing-summary {
+margin-right: 15px;
 }
 
 #toolbar {
