@@ -9,10 +9,10 @@
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
+ */
+Auth::routes();
+
 use App\Listing;
 Route::get('/listing/{listing}', 'ListingController@get_listing_web');
 Route::get('/', 'ListingController@get_home_web');
-Route::get('/saved', 'ListingController@get_home_web');
-
-    
+Route::get('/saved', 'ListingController@get_home_web')->middleware('auth');

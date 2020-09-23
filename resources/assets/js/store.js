@@ -1,12 +1,15 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from "axios";
+import router from "./router";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        saved: [3, 9],
+        saved: [],
         listing_summaries: [],
         listings: [],
+        auth: false,
     },
 
     mutations: {
@@ -20,10 +23,29 @@ export default new Vuex.Store({
         },
 
         addData(state, { route, data }) {
+            if (data.auth) {
+                state.auth = data.auth;
+            }
             if (route === "listing") {
                 state.listings.push(data.listing);
             } else {
                 state.listing_summaries = data.listings;
+            }
+        },
+    },
+    getters: {
+        getListing(state) {
+            return (id) => state.listings.find((listing) => id == listing.id);
+        },
+    },
+    actions: {
+        toggleSaved({ commit, state }, id) {
+            if (state.auth) {
+                axios
+                    .post("/api/user/toggle_saved", { id })
+                    .then(() => commit("toggleSaved", id));
+            } else {
+                router.push("/login");
             }
         },
     },
