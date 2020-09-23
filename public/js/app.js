@@ -10398,7 +10398,7 @@ __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODU
             var route = _ref.route,
                 data = _ref.data;
 
-            if (route === 'listing') {
+            if (route === "listing") {
                 state.listings.push(data.listing);
             } else {
                 state.listing_summaries = data.listings;
@@ -11264,7 +11264,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 __WEBPACK_IMPORTED_MODULE_0_vue__["a" /* default */].use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    mode: 'history',
+    mode: "history",
     scrollBehavior: function scrollBehavior(to, from, savedPosition) {
         return { x: 0, y: 0 };
     },
@@ -11278,23 +11278,22 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
             };
         }
     },
-    routes: [{ path: '/', component: __WEBPACK_IMPORTED_MODULE_3__components_HomePage_vue___default.a, name: 'home' }, { path: '/listing/:listing', component: __WEBPACK_IMPORTED_MODULE_2__components_ListingPage_vue___default.a, name: 'listing' }, { path: '/saved', component: __WEBPACK_IMPORTED_MODULE_4__components_SavedPage_vue___default.a, name: 'saved' }]
-
+    routes: [{ path: "/", component: __WEBPACK_IMPORTED_MODULE_3__components_HomePage_vue___default.a, name: "home" }, { path: "/listing/:listing", component: __WEBPACK_IMPORTED_MODULE_2__components_ListingPage_vue___default.a, name: "listing" }, { path: "/saved", component: __WEBPACK_IMPORTED_MODULE_4__components_SavedPage_vue___default.a, name: "saved" }]
 });
 
 router.beforeEach(function (to, from, next) {
     var serverData = JSON.parse(window.vuebnb_server_data);
-    if (to.name === 'listing' ? __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters.getListing(to.params.listing) : __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].state.listing_summaries.length > 0) {
+    if (to.name === "listing" ? __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].getters.getListing(to.params.listing) : __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].state.listing_summaries.length > 0) {
         next();
     } else if (!serverData.path || to.path !== serverData.path) {
-        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get('/api' + to.path).then(function (_ref) {
+        __WEBPACK_IMPORTED_MODULE_5_axios___default.a.get("/api" + to.path).then(function (_ref) {
             var data = _ref.data;
 
-            __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].commit('addData', { route: to.name, data: data });
+            __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].commit("addData", { route: to.name, data: data });
             next();
         });
     } else {
-        __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].commit('addData', { route: to.name, data: serverData });
+        __WEBPACK_IMPORTED_MODULE_6__store__["a" /* default */].commit("addData", { route: to.name, data: serverData });
         next();
     }
 });
@@ -15103,13 +15102,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['id', 'button'],
+  props: ["id", "button"],
   methods: {
     toggleSaved: function toggleSaved() {
-      this.$store.commit('toggleSaved', this.id);
+      this.$store.commit("toggleSaved", this.id);
     }
   },
-
   computed: {
     isListingSaved: function isListingSaved() {
       var _this = this;
@@ -15121,14 +15119,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     classes: function classes() {
       var saved = this.isListingSaved;
       return {
-        'fa': true,
-        'fa-lg': true,
-        'fa-heart': saved,
-        'fa-heart-o': !saved
+        fa: true,
+        "fa-lg": true,
+        "fa-heart": saved,
+        "fa-heart-o": !saved
       };
     },
     message: function message() {
-      return this.isListingSaved ? 'Saved' : 'Save';
+      return this.isListingSaved ? "Saved" : "Save";
     }
   }
 });
@@ -15156,7 +15154,7 @@ var render = function() {
       _vm.button
         ? _c("button", [
             _c("i", { class: _vm.classes }),
-            _vm._v("\r\n" + _vm._s(_vm.message) + "\r\n")
+            _vm._v("\n    " + _vm._s(_vm.message) + "\n  ")
           ])
         : _c("i", { class: _vm.classes })
     ]
@@ -18121,6 +18119,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -18278,6 +18309,18 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("h1", [_vm._v("vuebnb")])
+          ]),
+          _vm._v(" "),
+          _c("ul", { staticClass: "links" }, [
+            _c(
+              "li",
+              [
+                _c("router-link", { attrs: { to: { name: "saved" } } }, [
+                  _vm._v("Saved")
+                ])
+              ],
+              1
+            )
           ])
         ],
         1
