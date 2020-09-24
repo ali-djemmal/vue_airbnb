@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 
 class UserController extends Controller
@@ -13,7 +14,7 @@ class UserController extends Controller
         $user = Auth::user();
         $saved = $user->saved;
         $key = array_search($id, $saved);
-        if ($key === false) {
+        if ($key === FALSE) {
             array_push($saved, $id);
         } else {
             array_splice($saved, $key, 1);
